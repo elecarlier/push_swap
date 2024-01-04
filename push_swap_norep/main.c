@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:55:07 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/03 20:18:14 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/04 22:28:23 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 #include <limits.h>
 #include <unistd.h>
 
-void exit_error(char **array);
-void fill_stack_a(t_stack **a, char **array);
-t_stack *stack_new(int value);
-void print_stack(t_stack *stack);
+void	exit_error(char **array);
+void	fill_stack_a(t_stack **a, char **array);
+t_stack	*stack_new(int value);
+void	print_stack(t_stack *stack);
 
-int	main(int argc,char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_stack	*a;
 	t_stack	*b;
@@ -36,12 +36,15 @@ int	main(int argc,char *argv[])
 		return (1);
 	}
 	else if (argc == 2)
-	{
 		array = ft_split(argv[1], ' '); //don't forget to free it
-	}
 	else
 		array = argv + 1;
 	fill_stack_a(&a, array);
+	//printf("Avant sort \n");
+	//print_stack(a);
+	if(!is_sorted(a))
+		sort_s(&a, &b);
+	//printf("Avant apres \n");
 	print_stack(a);
 	return (0);
 }
@@ -60,22 +63,25 @@ void	fill_stack_a(t_stack **a, char **array)
 	long	nb;
 	int		i;
 	t_stack *new_node;
+	t_stack *tmp;
 
 	i = 0;
 	while (array[i])
 	{
-		nb = atol(array[i]);
+		nb = ft_atoi(array[i]);
 		if (nb > INT_MAX || nb < INT_MIN)
 			exit_error(array);
 		new_node = stack_new((int)nb);
-		if (!new_node)
-			exit_error(array);
 		if (*a)
 		{
-			new_node->next = *a;
-			(*a)->prev = new_node;
+			tmp = *a;
+			while (tmp->next != NULL)
+				tmp = tmp->next;
+			tmp->next = new_node;
+			new_node->prev = tmp;
 		}
-		*a = new_node;
+		else // If the stack is empty, set the new node as the head
+			*a = new_node;
 		i++;
 	}
 
@@ -98,10 +104,10 @@ t_stack	*stack_new(int value)
 }
 
 void print_stack(t_stack *stack) {
-    printf("Stack contents: ");
-    while (stack) {
-        printf("%d ", stack->data);
-        stack = stack->next;
-    }
-    printf("\n");
+	printf("Stack contents: ");
+	while (stack) {
+		printf("%d ", stack->data);
+		stack = stack->next;
+	}
+	printf("\n");
 }

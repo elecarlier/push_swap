@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 16:49:11 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/03 20:15:05 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/04 20:47:53 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	check_digit(char **array)
 		j = 0;
 		if (!ft_isdigit(array[i][0]) && array[i][0]!= 43 && array[i][0]!= 45)
 		{
+			 printf("Invalid number: %s\n", array[i]);
 			 return (1);//si le premier char n'est pas un digit ou un signe
 		}
 		j++;
