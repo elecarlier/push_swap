@@ -6,10 +6,9 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:08:18 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/04 22:20:29 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:02:18 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
@@ -48,5 +47,5 @@ void	ss(t_stack **a, t_stack **b)
 {
 	swap(a);
 	swap(b);
-	//printf("ss");
+	printf("ss\n");
 }

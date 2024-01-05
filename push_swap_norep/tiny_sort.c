@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 21:37:14 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/04 22:38:04 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:07:07 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ void	sort_s(t_stack **a, t_stack **b)
 	{
 		sort_three(*a);
 	}
-}
 
+}
 void sort_three(t_stack **a)
 {
-
+	printf("en construction");
 }
+
+
