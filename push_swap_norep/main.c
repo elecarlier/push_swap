@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:55:07 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/05 17:05:20 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/08 19:28:21 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ int	main(int argc, char *argv[])
 	}
 	fill_stack_a(&a, array);
 	print_stack(a);
-	rra(&a);
+	if(!is_sorted(a))
+		sort_s(&a, &b);
 	print_stack(a);
-	//if(!is_sorted(a))
-		//sort_s(&a, &b);
 	return (0);
 }
 
@@ -101,10 +100,13 @@ t_stack	*stack_new(int value)
 	if (!new_node)
 		return (NULL);
 	new_node->data = value;
-	new_node->index = 0;
+	new_node->abov_median = 0;
+	new_node->current_pos = 0;
+	new_node->price = 0;
+	new_node->is_cheapest = 0;
 	new_node->prev = NULL;
 	new_node->next = NULL;
-
+	new_node->target_node = NULL;
 	return (new_node);
 }
 

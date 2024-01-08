@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:47:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/05 17:04:26 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:17:33 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 The last element becomes the first one.*/
 static void	reverse_rotate(t_stack **stack)
 {
-	t_stack *last;
+	t_stack	*last;
 
 	if (!stack || !(*stack)->next)
 		return ;

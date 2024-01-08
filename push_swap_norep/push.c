@@ -6,14 +6,16 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 21:07:00 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/04 21:35:59 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:05:50 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
 void static	push(t_stack **dst, t_stack **src)
 {
-	t_stack *first_src;
-	t_stack *first_dst;
+	t_stack	*first_src;
+	t_stack	*first_dst;
 
 	if(*src) //if src not empty
 	{
@@ -35,12 +37,12 @@ void	pa(t_stack **a, t_stack **b)
 {
 
 	push(a,b);
-	//printf("pa");
+	printf("pb\n");
 }
 /*Take the first element at the top of a and put it at the top of b.
 Do nothing if a is empty.*/
 void	pb(t_stack **b, t_stack **a)
 {
 	push(b,a);
-	//printf("pa");
+	printf("pb\n");
 }

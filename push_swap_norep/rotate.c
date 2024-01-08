@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:55:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/05 17:01:30 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/08 20:10:19 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,3 @@ void	rr(t_stack **a, t_stack **b)
 	rotate(b);
 	printf("rr\n");
 }
-
-
-
-
-
-
