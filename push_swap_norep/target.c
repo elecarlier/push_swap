@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:21:06 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/08 20:13:29 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/09 22:36:58 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,28 @@
 
 
 void print_stack_values(const char *label, t_stack *stack);
-static void	set_current_pos(t_stack **stack)
+
+void	set_current_pos(t_stack *stack)
 {
 	int	i;
 	int	median;
 
 	i = 0;
-	if (!stack)
+	if (NULL == stack)
 		return ;
-	median = len_stack(*stack) / 2;
-	while (*stack)
+	median = len_stack(stack) / 2;
+	while (stack)
 	{
-		(*stack)->current_pos = i;
+		stack->current_pos = i;
 		if (i <= median)
-			(*stack)->abov_median = 1;
+			stack->abov_median = 1;
 		else
-			(*stack)->abov_median = 0;
-		(*stack) = (*stack)->next;
-		i++;
+			stack->abov_median = 0;
+		stack = stack->next;
+		++i;
 	}
 }
-
+/*APPARENTLY WORKING*/
 static void	set_price(t_stack *a, t_stack *b)
 {
 	int	len_a;
@@ -45,41 +46,41 @@ static void	set_price(t_stack *a, t_stack *b)
 	len_b = len_stack(b);
 	while (b)
 	{
-		if (b->abov_median)
-			b->price = len_b - b->current_pos;
-		else
-			b->price = b->current_pos;
+		b->price = b->current_pos;
+		if(!b->abov_median)
+			b->price = len_b - (b->current_pos);
 		if (b->target_node->abov_median)
-			b->price += len_a - b->target_node->current_pos;
-		else
 			b->price += b->target_node->current_pos;
+		else
+			b->price += len_a - (b->target_node->current_pos);
+
+		//printf("Value of the node %i and price %i \n", b->data, b->price);
 		b = b->next;
 	}
 }
-
+/*APPERENTLY WORKING*/
 static void	set_cheapest(t_stack *stack)
 {
-	int cheap;
-	t_stack *cheap_node;
+	int cheapest_val;
+	t_stack *cheapest_node;
 
-	cheap_node = NULL;
-	cheap = INT_MAX; //Ppour garantir que la premiere iteration soit toujours vraie
+	cheapest_node = NULL;
+	cheapest_val = INT_MAX; //Pour garantir que la premiere iteration soit toujours vraie
 	if (!stack)
-	{
-		printf("askip le stack est vide dans set cheapest\n");
 		return ;
-	}
-
 	while (stack)
 	{
+		if (stack->price < cheapest_val)
+		{
+			cheapest_val = stack->price;
+			cheapest_node = stack;
 
-		if (cheap > stack->price)
-			cheap_node = stack;
+		}
 		stack = stack->next;
 	}
-	if (cheap_node)
-		cheap_node->is_cheapest = 1;
-	printf("is_cheapest %d", cheap_node->is_cheapest);
+	if (cheapest_node)
+		cheapest_node->is_cheapest = 1;
+	//printf("is_cheapest %d", cheap_node->is_cheapest);
 }
 
 static void	set_target(t_stack *a, t_stack *b)
@@ -92,7 +93,7 @@ static void	set_target(t_stack *a, t_stack *b)
 	{
 		biggest_target_value = INT_MAX;
 		current_a = a;
-		best_friend = NULL;
+		//best_friend = NULL;
 		while (current_a)
 		{
 			if (current_a->data > b->data
@@ -107,33 +108,18 @@ static void	set_target(t_stack *a, t_stack *b)
 			b->target_node = find_smallest_node(a);
 		else
 			b->target_node = best_friend;
+		//printf("Node and its target %i and %i \n", b->data, b->target_node->data);
+		b = b->next;
 	}
 }
 
 void	reset_nodes(t_stack *a, t_stack *b)
 {
-	printf(";li\n");
 
-
-	printf("before set_current_pos(&a); \n");
-	set_current_pos(&a);
-	printf("before	set_current_pos(&b);\n");
-
-	set_current_pos(&b);
-
-	if (!b)
-		printf("b is empty in reset_mode\n");
-	else
-		printf("b is not empty in reset_mode");
-
-	//printf("before set target;");
+	set_current_pos(a); //appears to be working
+	set_current_pos(b); //appears to be working
 	set_target(a, b);
-
-	//printf("before set price \n");
 	set_price(a, b);
-	//printf("before set cheapest \n");
-
 	set_cheapest(b);
-	//printf("after set cheapest \n");
 }
 

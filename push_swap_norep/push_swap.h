@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:20:26 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/08 17:42:43 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/09 23:19:52 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_stack
 
 void	biggy_s(t_stack **a, t_stack **b);
 t_stack	*return_cheap(t_stack *b);
-
+void	finish_the_job(t_stack **stack, t_stack *node, char stack_name);
 
 int	ft_isdigit(int c);
 int	check_digit(char **array);
@@ -44,6 +44,7 @@ t_stack	*find_last(t_stack *stack);
 t_stack	*find_smallest_node(t_stack *stack);
 
 void	reset_nodes(t_stack *a, t_stack *b);
+void	set_current_pos(t_stack *stack);
 
 void	sort_s(t_stack **a, t_stack **b);
 t_stack	*find_biggest_node(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 22:04:34 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/08 17:57:20 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/09 22:26:41 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_stack	*find_smallest_node(t_stack *stack)
 	smallest_node = stack;
 	while (stack)
 	{
-		if (smallest_node->data < stack->data)
+		if (smallest_node->data > stack->data)
 			smallest_node = stack;
 		stack = stack->next;
 	}

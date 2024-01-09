@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:24:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/08 20:10:39 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/09 23:29:45 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ void print_stack_bis(t_stack **stack) {
 void	biggy_s(t_stack **a, t_stack **b)
 {
 	int	len_a;
+	t_stack	*smallest_node;
 
 	len_a = len_stack(*a);
 	while (len_a-- > 3)
-		pb(b, a);
+		pb(a, b);
 	sort_three(a);
 	print_stack_bis(a);
 	print_stack_bis(b);
@@ -43,48 +44,73 @@ void	biggy_s(t_stack **a, t_stack **b)
 
 		reset_nodes(*a, *b);
 		move_nodes(a,b);
-		pa(a, b);
+		print_stack_bis(a);
+		print_stack_bis(b);
 	}
+	set_current_pos(*a);
+	smallest_node = find_smallest_node(*a);
+	if (smallest_node->abov_median)
+	{
+		while (*a != smallest_node)
+			ra(a);
+	}
+	else
+	{
+		while (*a != smallest_node)
+			rra(a);
+	}
+
 }
 
-
+void	finish_the_job(t_stack **stack, t_stack *node, char stack_name)
+{
+	while (*stack != node)
+	{
+		if (stack_name == 'a')
+		{
+			if (node->abov_median)
+				ra(stack);
+			else
+				rra(stack);
+		}
+		else if (stack_name == 'b')
+		{
+			if (node->abov_median)
+				rb(stack);
+			else
+				rrb(stack);
+		}
+	}
+}
 
 static void	move_nodes(t_stack **a, t_stack **b)
 {
 	t_stack	*cheapest;
 
 	cheapest = return_cheap(*b);
-
-	printf("Cheapest Node Parameters:\n");
-    // printf("Data: %d\n", cheapest->data);
-    // printf("Above Median: %d\n", cheapest->abov_median);
-    // printf("Current Position: %d\n", cheapest->current_pos);
-    // printf("Price: %d\n", cheapest->price);
-    // printf("Is Cheapest: %d\n", cheapest->is_cheapest);
-
 	if (cheapest->target_node->abov_median && cheapest->abov_median) //both above the median
 	{
-		printf("1\n");
-		while (*a != cheapest->target_node || *b != cheapest)
-			rrr(a,b);
-		while (*a != cheapest->target_node)
-			rra(a);
-		while (*b != cheapest)
-			rrb(b);
+		while (*a != cheapest->target_node && *b != cheapest)
+		{
+			rr(a,b);
+			set_current_pos(*a);
+			set_current_pos(*b);
+		}
 	}
 	else if (!(cheapest->target_node->abov_median) && !(cheapest->abov_median)) //both under the median
 	{
-		printf("2\n");
-		while (*a != cheapest->target_node || *b != cheapest)
-			rr(a,b);
-		while (*a != cheapest->target_node)
-			ra(a);
-		while (*b != cheapest)
-			rb(b);
+		while (*a != cheapest->target_node && *b != cheapest)
+		{
+			rrr(a,b);
+			set_current_pos(*a);
+			set_current_pos(*b);
+		}
 	}
-	else
-		special_cases(a,b, cheapest);
+	finish_the_job(b, cheapest, 'b');
+	finish_the_job(a, cheapest->target_node, 'a');
+	pa(a,b);
 }
+
 
 static void	special_cases(t_stack **a, t_stack **b, t_stack *cheapest)
 {
@@ -110,7 +136,11 @@ t_stack	*return_cheap(t_stack *b)
 	while (b)
 	{
 		if (b->is_cheapest)
+		{
 			return (b);
+			printf("Value of the cheapest : %i", b->data);
+		}
+
 		b = b->next;
 	}
 
