@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:20:26 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/09 23:19:52 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:50:21 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ typedef struct s_stack
 	struct	s_stack *target_node;
 } t_stack;
 
-
+void print_stack_bis(t_stack **stack);
 void	biggy_s(t_stack **a, t_stack **b);
 t_stack	*return_cheap(t_stack *b);
 void	finish_the_job(t_stack **stack, t_stack *node, char stack_name);
 
-int	ft_isdigit(int c);
+int	ft_isdigit_(int c);
 int	check_digit(char **array);
 int	len_array(char **array);
 
@@ -51,7 +51,7 @@ t_stack	*find_biggest_node(t_stack *stack);
 void sort_three(t_stack **a);
 
 int	main(int argc, char *argv[]);
-void	exit_error(char **array);
+void	exit_error();
 void	fill_stack_a(t_stack **a, char **array);
 t_stack	*stack_new(int value);
 void print_stack(t_stack *stack);

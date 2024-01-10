@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 21:07:00 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/09 20:31:16 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:02:35 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void static	push(t_stack **dest, t_stack **src)
 {
 	t_stack	*to_push;
 
-	if (*src == NULL)
+	if (!*src)
 		return ;
 	else
 	{
@@ -52,6 +52,6 @@ void	pa(t_stack **a, t_stack **b)
 Do nothing if a is empty.*/
 void	pb(t_stack **a, t_stack **b)
 {
-	push(b,a);
+	push(b, a);
 	printf("pb\n");
 }

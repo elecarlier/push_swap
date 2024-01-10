@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 16:49:11 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/05 16:11:03 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:46:55 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 } */
 
-int	ft_isdigit(int c)
+int	ft_isdigit_(int c)
 {
 	if (c >= 48 && c <= 57)
 		return (1);
@@ -49,12 +49,12 @@ int	check_digit(char **array)
 	while(i < l_array && array[i] != NULL)
 	{
 		j = 0;
-		if (!ft_isdigit(array[i][0]) && array[i][0]!= 43 && array[i][0]!= 45)
+		if (!ft_isdigit_(array[i][0]) && array[i][0]!= 43 && array[i][0]!= 45)
 			 return (1);//si le premier char n'est pas un digit ou un signe
 		j++;
 		while (array[i][j])
 		{
-			if (!ft_isdigit(array[i][j]))
+			if (!ft_isdigit_(array[i][j]))
 				return (1);
 			j++;
 		}

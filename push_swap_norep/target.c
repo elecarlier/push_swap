@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:21:06 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/09 22:36:58 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:17:25 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	set_current_pos(t_stack *stack)
 	int	median;
 
 	i = 0;
-	if (NULL == stack)
+	if (!stack)
 		return ;
 	median = len_stack(stack) / 2;
 	while (stack)
@@ -93,7 +93,6 @@ static void	set_target(t_stack *a, t_stack *b)
 	{
 		biggest_target_value = INT_MAX;
 		current_a = a;
-		//best_friend = NULL;
 		while (current_a)
 		{
 			if (current_a->data > b->data
@@ -108,7 +107,6 @@ static void	set_target(t_stack *a, t_stack *b)
 			b->target_node = find_smallest_node(a);
 		else
 			b->target_node = best_friend;
-		//printf("Node and its target %i and %i \n", b->data, b->target_node->data);
 		b = b->next;
 	}
 }
@@ -116,8 +114,8 @@ static void	set_target(t_stack *a, t_stack *b)
 void	reset_nodes(t_stack *a, t_stack *b)
 {
 
-	set_current_pos(a); //appears to be working
-	set_current_pos(b); //appears to be working
+	set_current_pos(a);
+	set_current_pos(b);
 	set_target(a, b);
 	set_price(a, b);
 	set_cheapest(b);
