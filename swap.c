@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:08:18 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/05 17:02:18 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:27:30 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static void swap(t_stack **stack)
 void	sa(t_stack **a)
 {
 	swap(a);
-	printf("sa\n");
+	write(1, "sa\n", 3);
 }
 
 
 void	sb(t_stack **b)
 {
 	swap(b);
-	printf("sb\n");
+	write(1, "sb\n", 3);
 }
 
 
@@ -47,5 +47,5 @@ void	ss(t_stack **a, t_stack **b)
 {
 	swap(a);
 	swap(b);
-	printf("ss\n");
+	write(1, "ss\n", 3);
 }

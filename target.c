@@ -6,18 +6,22 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:21:06 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/07 17:57:12 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:17:25 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
 
-void	set_current_pos(t_stack **stack)
+
+void print_stack_values(const char *label, t_stack *stack);
+
+void	set_current_pos(t_stack *stack)
 {
 	int	i;
 	int	median;
 
+	i = 0;
 	if (!stack)
 		return ;
 	median = len_stack(stack) / 2;
@@ -29,10 +33,10 @@ void	set_current_pos(t_stack **stack)
 		else
 			stack->abov_median = 0;
 		stack = stack->next;
-		i++;
+		++i;
 	}
 }
-
+/*APPARENTLY WORKING*/
 static void	set_price(t_stack *a, t_stack *b)
 {
 	int	len_a;
@@ -42,34 +46,41 @@ static void	set_price(t_stack *a, t_stack *b)
 	len_b = len_stack(b);
 	while (b)
 	{
-		if (b->abov_median)
-			b->price = len_b - b->current_pos;
-		else
-			b->price = b->current_pos;
+		b->price = b->current_pos;
+		if(!b->abov_median)
+			b->price = len_b - (b->current_pos);
 		if (b->target_node->abov_median)
-			b->price += len_a - b->target_node->current_pos;
-		else
 			b->price += b->target_node->current_pos;
+		else
+			b->price += len_a - (b->target_node->current_pos);
+
+		//printf("Value of the node %i and price %i \n", b->data, b->price);
 		b = b->next;
 	}
 }
-
+/*APPERENTLY WORKING*/
 static void	set_cheapest(t_stack *stack)
 {
-	int cheap;
-	t_stack cheap_node;
+	int cheapest_val;
+	t_stack *cheapest_node;
 
-	cheap = INT_MAX; //Ppour garantir que la premiere iteration soit toujours vraie
+	cheapest_node = NULL;
+	cheapest_val = INT_MAX; //Pour garantir que la premiere iteration soit toujours vraie
 	if (!stack)
 		return ;
 	while (stack)
 	{
-		if (cheap > stack->price)
-			cheap_node = stack;
+		if (stack->price < cheapest_val)
+		{
+			cheapest_val = stack->price;
+			cheapest_node = stack;
+
+		}
 		stack = stack->next;
 	}
-	if (cheap_node)
-		cheap_node->is_cheapest = 1;
+	if (cheapest_node)
+		cheapest_node->is_cheapest = 1;
+	//printf("is_cheapest %d", cheap_node->is_cheapest);
 }
 
 static void	set_target(t_stack *a, t_stack *b)
@@ -96,16 +107,17 @@ static void	set_target(t_stack *a, t_stack *b)
 			b->target_node = find_smallest_node(a);
 		else
 			b->target_node = best_friend;
+		b = b->next;
 	}
 }
 
 void	reset_nodes(t_stack *a, t_stack *b)
 {
+
 	set_current_pos(a);
 	set_current_pos(b);
 	set_target(a, b);
 	set_price(a, b);
 	set_cheapest(b);
 }
-
 

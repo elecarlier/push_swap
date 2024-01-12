@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 16:49:11 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/05 16:11:03 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:07:36 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,44 @@
 #include "libft/libft.h"
 #include <stdio.h>
 
-/*int	check_dupplicate(char **array)
+int	check_dupplicate(char **array)
 {
+	int len;
+	int	i;
+	int j;
 
-} */
+	j = 0;
+	i = 0;
+	len = len_array(array);
+    while (i < len - 1)
+	{
+        j = i + 1;
+        while (j < len)
+		{
+            if (ft_strncmp(array[i], array[j], len == 0))
+                return 1;
+            j++;
+        }
+   		i++;
+    }
+	return 0; // false
+}
 
-int	ft_isdigit(int c)
+
+int	ft_isdigit_(int c)
 {
 	if (c >= 48 && c <= 57)
 		return (1);
 	else
 		return (0);
 }
+
 int	len_array(char **array)
 {
 	int	i;
 
 	i = 0;
-	while(array[i])
+	while (array[i])
 	{
 		i++;
 	}
@@ -46,15 +66,15 @@ int	check_digit(char **array)
 
 	l_array = len_array(array);
 	i = 0;
-	while(i < l_array && array[i] != NULL)
+	while (i < l_array && array[i] != NULL)
 	{
 		j = 0;
-		if (!ft_isdigit(array[i][0]) && array[i][0]!= 43 && array[i][0]!= 45)
-			 return (1);//si le premier char n'est pas un digit ou un signe
+		if (!ft_isdigit_(array[i][0]) && array[i][0]!= 43 && array[i][0]!= 45)
+			 return (1);
 		j++;
 		while (array[i][j])
 		{
-			if (!ft_isdigit(array[i][j]))
+			if (!ft_isdigit_(array[i][j]))
 				return (1);
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 21:37:14 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/07 16:02:45 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:22:33 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 void	sort_s(t_stack **a, t_stack **b)
 {
-	if (len_stack(*a) == 2)
+	int	len_a = len_stack(*a);
+	if (len_a == 2)
 		sa(a);
-	else if (len_stack(*a) == 3)
+	else if (len_a == 3)
 	{
 		sort_three(a);
 	}
 	else
-		biggy_sort(a);
+	{
+		biggy_s(a,b);
+	}
+
 }
 
 void	sort_three(t_stack **a)
@@ -35,10 +39,9 @@ void	sort_three(t_stack **a)
 	{
 		rra(a);
 	}
-
-
 	if ((*a)->data > (*a)->next->data)
 		sa(a);
+	return ;
 }
 
 t_stack	*find_biggest_node(t_stack *stack)
