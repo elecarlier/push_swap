@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:55:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/12 14:14:38 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/12 16:05:43 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	rotate(t_stack **stack)
 	first = *stack;
 	last = find_last(*stack);
 	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
 	last->next = first;
 	first->prev = last;
 	first->next = NULL;

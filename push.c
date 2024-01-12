@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 21:07:00 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/12 13:18:27 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/12 16:08:07 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void static	push(t_stack **dest, t_stack **src)
 		*src = (*src)->next; //met a jour la tete de src
 		if (*src) //si pas videm met a jour le pointeur
 			(*src)->prev = NULL;
-		to_push->prev = NULL;
+		// to_push->prev = NULL;
 		if (*dest == NULL)
 		{
 			*dest = to_push;

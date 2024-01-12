@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:47:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/12 15:34:40 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/12 16:25:36 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	reverse_rotate(t_stack **stack)
 void	rra(t_stack **a)
 {
 	reverse_rotate(a);
-	//write(1, "rra\n", 4);
+	write(1, "rra\n", 4);
 }
 
 void	rrb(t_stack **b)
