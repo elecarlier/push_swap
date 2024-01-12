@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:55:07 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/10 18:43:52 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:04:57 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char *argv[])
 	}
 	fill_stack_a(&a, array);
 	print_stack(a);
-	if(!is_sorted(a))
+	if (!is_sorted(a))
 		sort_s(&a, &b);
 	print_stack(a);
 	return (0);
@@ -102,7 +102,7 @@ t_stack	*stack_new(int value)
 
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
-		return NULL;
+		return (NULL);
 	new_node->data = value;
 	new_node->abov_median = 0;
 	new_node->current_pos = 0;
@@ -137,7 +137,6 @@ int	check_args(char **array)
 	}
 	else
 		printf("No doublon \n");
-	// Ajoutez d'autres vérifications si nécessaire...
 
 	return (0);
 }

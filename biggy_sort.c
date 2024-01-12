@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:24:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/12 13:46:50 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:05:55 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,15 @@ void	biggy_s(t_stack **a, t_stack **b)
 
 void	finish_the_job(t_stack **stack, t_stack *node, char stack_name)
 {
+	t_stack *first;
+
 	while (*stack != node)
 	{
+		first = *stack;
+		//printf("top node value %i \n", first->data);
 		if (stack_name == 'a')
 		{
+			printf("cheapest : %i\n", node->data);
 			print_stack_bis(stack);
 			if (node->abov_median)
 				ra(stack);
@@ -84,6 +89,7 @@ static void	move_nodes(t_stack **a, t_stack **b)
 	t_stack	*cheapest;
 
 	cheapest = return_cheap(*b);
+	printf("cheapest value %i \n", cheapest->data);
 	if (cheapest->target_node->abov_median && cheapest->abov_median)
 	{
 		while (*a != cheapest->target_node && *b != cheapest)
@@ -102,8 +108,10 @@ static void	move_nodes(t_stack **a, t_stack **b)
 			set_current_pos(*b);
 		}
 	}
-	finish_the_job(b, cheapest, 'b');
-	finish_the_job(a, cheapest->target_node, 'a');
+	printf("cheapest target value %i \n", cheapest->target_node->data);
+
+	finish_the_job(b, cheapest, 'b'); //rotate b until cheapest is at the top
+	finish_the_job(a, cheapest->target_node, 'a'); //rotate a until the target node is at the top
 	pa(a, b);
 }
 
