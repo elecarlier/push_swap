@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 21:37:14 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/08 18:22:33 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:38:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	sort_s(t_stack **a, t_stack **b)
 {
-	int	len_a = len_stack(*a);
+	int	len_a;
+
+	len_a = len_stack(*a);
 	if (len_a == 2)
 		sa(a);
 	else if (len_a == 3)
@@ -23,9 +25,8 @@ void	sort_s(t_stack **a, t_stack **b)
 	}
 	else
 	{
-		biggy_s(a,b);
+		biggy_s(a, b);
 	}
-
 }
 
 void	sort_three(t_stack **a)

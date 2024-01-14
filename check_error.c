@@ -6,13 +6,11 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 16:49:11 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/14 16:07:33 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:36:05 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
-#include <stdio.h>
 
 int	check_dupplicate(t_stack *a)
 {

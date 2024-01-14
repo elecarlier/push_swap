@@ -1,10 +1,10 @@
-NAME = pushswap
+NAME = push_swap
 LIBFTNAME = libft.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 LIBFTDIR = ./libft
 
-SRCS = 	main.c
+SRCS = 	main.c biggy_sort.c check_error.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -21,9 +21,6 @@ $(NAME): $(OBJS) $(LIBFTDIR)/$(LIBFTNAME)
 clean:
 	@rm -f $(OBJS)
 	@cd $(LIBFTDIR) && make clean
-
-testclean:
-	@rm -f test
 
 fclean: clean
 	@rm -f $(NAME)
