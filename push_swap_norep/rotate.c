@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:55:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/10 17:26:18 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/12 16:05:43 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,27 @@ static void	rotate(t_stack **stack)
 	first = *stack;
 	last = find_last(*stack);
 	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
 	last->next = first;
+	first->prev = last;
 	first->next = NULL;
 }
 
 void	ra(t_stack **a)
 {
 	rotate(a);
-	printf("ra\n");
+	write(1, "ra\n", 3);
 }
 
 void	rb(t_stack **b)
 {
 	rotate(b);
-	printf("rb\n");
+	write(1, "rb\n", 3);
 }
 
 void	rr(t_stack **a, t_stack **b)
 {
 	rotate(a);
 	rotate(b);
-	printf("rr\n");
+	write(1, "rr\n", 3);
 }

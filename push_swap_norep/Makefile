@@ -1,39 +1,32 @@
-NAME = pushswap
-LIBFTNAME = libft.a
+NAME = push_swap
+LIBFT = $(LIBFTDIR)/libft.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 LIBFTDIR = ./libft
 
-SRCS = 	main.c
+SRCS = 	main.c biggy_sort.c check_error.c push.c reverse_rotate.c rotate.c swap.c target.c tiny_sort.c stack_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFTDIR)/$(LIBFTNAME)
-	@cp $(LIBFTDIR)/$(LIBFTNAME) .
-	@mv $(LIBFTNAME) $(NAME)
-	@ar -rcs $(NAME) $(OBJS)
+$(LIBFT):
+	$(MAKE) -C $(LIBFTDIR)
+
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) -g $(CFLAGS) $^ -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(LIBFTDIR) -c -o $@ $<
+	$(CC) -g $(CFLAGS) -I$(LIBFTDIR) -I . -c $< -o $@
 
 clean:
-	@rm -f $(OBJS)
-	@cd $(LIBFTDIR) && make clean
-
-testclean:
-	@rm -f test
+	rm -f $(OBJS)
+	$(MAKE) -C $(LIBFTDIR) clean
 
 fclean: clean
-	@rm -f $(NAME)
-	@cd $(LIBFTDIR) && make fclean
+	rm -f $(NAME)
+	$(MAKE) -C $(LIBFTDIR) fclean
 
 re: fclean all
-
-test: $(NAME)
-	@$(CC) main.c -L. -lpushswap -o test
-	@./test
-	@rm -r ./test
 
 .PHONY: all clean fclean re test

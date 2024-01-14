@@ -6,12 +6,13 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 22:04:34 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/09 22:26:41 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/14 19:18:19 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* Returns the lenght of the stack */
 int	len_stack(t_stack const *stack)
 {
 	int	count;
@@ -26,7 +27,7 @@ int	len_stack(t_stack const *stack)
 	}
 	return (count);
 }
-
+/* Check if the stack is sorted, if not sorted returns 0*/
 int	is_sorted(const t_stack *stack)
 {
 	if (!stack)
@@ -40,6 +41,7 @@ int	is_sorted(const t_stack *stack)
 	return (1);
 }
 
+/* Return the last node of the stack */
 t_stack	*find_last(t_stack *stack)
 {
 	if (!stack)
@@ -49,7 +51,7 @@ t_stack	*find_last(t_stack *stack)
 	return (stack);
 }
 
-/*Est-ce que le plus petit est pas toujours le premier ? */
+/* Return the node of the smallest value */
 t_stack	*find_smallest_node(t_stack *stack)
 {
 	t_stack	*smallest_node;
@@ -64,4 +66,15 @@ t_stack	*find_smallest_node(t_stack *stack)
 		stack = stack->next;
 	}
 	return (smallest_node);
+}
+void	free_stack(t_stack *stack)
+{
+	t_stack	*temp;
+
+	while (stack)
+	{
+		temp = stack;
+		stack = stack->next;
+		free(temp);
+	}
 }

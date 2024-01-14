@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:24:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/10 17:14:57 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:38:01 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,19 @@
 
 static void	move_nodes(t_stack **a, t_stack **b);
 
-void print_stack_bis(t_stack **stack) {
-	t_stack *temp;
-
-	temp = *stack;
-	printf("Stack contents: ");
-	while (temp) {
-		printf("%d ", temp->data);
-		temp = temp->next;
-	}
-	printf("\n");
-}
-
 void	biggy_s(t_stack **a, t_stack **b)
 {
-	int	len_a;
 	t_stack	*smallest_node;
+	int		len_a;
 
 	len_a = len_stack(*a);
 	while (len_a-- > 3)
 		pb(a, b);
 	sort_three(a);
-	print_stack_bis(a);
 	while (*b)
 	{
 		reset_nodes(*a, *b);
 		move_nodes(a, b);
-		print_stack_bis(a);
-		print_stack_bis(b);
 	}
 	set_current_pos(*a);
 	smallest_node = find_smallest_node(*a);
@@ -59,19 +44,17 @@ void	biggy_s(t_stack **a, t_stack **b)
 
 void	finish_the_job(t_stack **stack, t_stack *node, char stack_name)
 {
+	t_stack	*first;
+
 	while (*stack != node)
 	{
+		first = *stack;
 		if (stack_name == 'a')
 		{
-			//print_stack_bis(stack);
-			//printf("Here \n");
 			if (node->abov_median)
 				ra(stack);
 			else if (!(node->abov_median))
-			{
 				rra(stack);
-			}
-
 		}
 		else if (stack_name == 'b')
 		{
@@ -111,19 +94,15 @@ static void	move_nodes(t_stack **a, t_stack **b)
 	pa(a, b);
 }
 
-
-
 t_stack	*return_cheap(t_stack *b)
 {
 	if (!b)
 		return (NULL);
-
 	while (b)
 	{
 		if (b->is_cheapest)
 			return (b);
 		b = b->next;
 	}
-
 	return (NULL);
 }

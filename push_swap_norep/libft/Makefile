@@ -44,11 +44,9 @@ BONUS = 	./ft_lstsize.c		\
 	./ft_lstclear.c		\
 	./ft_lstmap.c		\
 	./ft_lstiter.c		\
-	
+
 OBJS = $(SRC:.c=.o)
 BONUS_OBJS = $(BONUS:.c=.o)
-
-HDRS = libft.h
 
 all: $(NAME)
 
@@ -57,10 +55,10 @@ $(NAME): $(OBJS)
 	ranlib $(NAME)
 
 bonus: $(OBJS) $(BONUS_OBJS)
-	ar rc $(NAME) $(OBJS) $(BONUS_OBJS) 
+	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
 %.o: %.c
-	cc -c -Wall -Wextra -Werror -I. $(HDRS) $@ $<
+	cc -c -Wall -Wextra -Werror -I . $< -o $@
 
 clean:
 	/bin/rm -f $(OBJS) $(BONUS_OBJS)
