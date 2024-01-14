@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 16:49:11 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/14 15:56:21 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:07:33 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	len_array(char **array)
 	return (i);
 }
 
-int	check_digit(char **array)
+int	check_args(char **array)
 {
 	int	i;
 	int	j;
@@ -66,6 +66,8 @@ int	check_digit(char **array)
 	i = 0;
 	while (i < l_array && array[i] != NULL)
 	{
+		if ((array[i][0] == 43 || array[i][0] == 45) && (!array[i][1]))
+			return (1);
 		j = 0;
 		if (!ft_isdigit_(array[i][0]) && array[i][0] != 43 && array[i][0] != 45)
 			return (1);

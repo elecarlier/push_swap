@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:55:07 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/14 15:54:22 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:00:05 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,3 @@ void print_stack(t_stack *stack) {
 	printf("\n");
 }
 
-int	check_args(char **array)
-{
-	if (check_digit(array))
-	{
-		printf("At least one invalid number found.\n");
-		return (1);
-	}
-	return (0);
-}
