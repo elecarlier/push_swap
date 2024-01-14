@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:20:26 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/10 18:36:45 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/14 15:47:38 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_stack
 	struct	s_stack *target_node;
 } t_stack;
 
-int	check_dupplicate(char **array);
+int	check_dupplicate(t_stack *a);
 void print_stack_bis(t_stack **stack);
 void	biggy_s(t_stack **a, t_stack **b);
 t_stack	*return_cheap(t_stack *b);

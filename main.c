@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:55:07 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/12 15:04:57 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/14 15:54:22 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,20 @@ int	main(int argc, char *argv[])
 	a = NULL;
 	b = NULL;
 	if (argc < 2)
-	{
-		exit_error();
 		return (1);
-	}
 	else if (argc == 2)
 		array = ft_split(argv[1], ' '); //don't forget to free it
 	else
 		array = argv + 1;
 	if (check_args(array))
-	{
 		exit_error();
-		return (1);
-	}
 	fill_stack_a(&a, array);
-	print_stack(a);
+	if (check_dupplicate(a))
+		exit_error();
+	print_stack(a); //delete
 	if (!is_sorted(a))
 		sort_s(&a, &b);
-	print_stack(a);
+	print_stack(a); //delete
 	return (0);
 }
 
@@ -58,8 +54,7 @@ void	exit_error()
 	write(1, "Error\n", 7);
 	/*if (array)
 		free(array);*/
-	exit(EXIT_FAILURE);
-	//CAN WE USE EXIT?
+	exit(1);
 }
 
 void	fill_stack_a(t_stack **a, char **array)
@@ -73,8 +68,6 @@ void	fill_stack_a(t_stack **a, char **array)
 	while (array[i])
 	{
 		nb = ft_atoi(array[i]);
-		if (nb > INT_MAX || nb < INT_MIN)
-			exit_error();
 		new_node = stack_new((int)nb);
 		if (*a)
 		{
@@ -91,7 +84,6 @@ void	fill_stack_a(t_stack **a, char **array)
 		}
 		i++;
 	}
-
 }
 
 /* Creates/allocate memory for a new_node*/
@@ -130,13 +122,5 @@ int	check_args(char **array)
 		printf("At least one invalid number found.\n");
 		return (1);
 	}
-	if (check_dupplicate(array))
-	{
-		printf("Doublon \n");
-		return (1);
-	}
-	else
-		printf("No doublon \n");
-
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:47:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/01/12 16:25:36 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/01/12 16:33:57 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	reverse_rotate(t_stack **stack)
 	t_stack	*last;
 	t_stack	*first;
 
-	//print_stack_bis(stack);
 	if (!*stack || !(*stack)->next)
 		return ;
 	first = *stack;
@@ -30,9 +29,6 @@ static void	reverse_rotate(t_stack **stack)
 	last->next = first;
 	last->prev = NULL;
 	*stack = last;
-	//set_current_pos(*stack);
-	// printf("Inside reverse rotation\n");
-	print_stack_bis(stack);
 }
 
 void	rra(t_stack **a)
@@ -51,5 +47,5 @@ void	rrr(t_stack **a, t_stack **b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	printf("rrr\n");
+	write(1, "rrr\n", 4);
 }
